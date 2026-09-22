@@ -1,0 +1,237 @@
+:root {
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --text: #1f2430;
+  --muted: #8a91a3;
+  --border: #e3e7f0;
+  --accent: #4f6ef7;
+  --accent-dark: #3d59d6;
+  --danger: #e2574c;
+  --radius: 12px;
+  --shadow: 0 10px 30px rgba(31, 36, 48, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 40px 16px;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
+    "Noto Sans JP", "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.app {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 28px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.app__header {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.app__title {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: 0.02em;
+}
+
+.app__subtitle {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* 入力フォーム */
+.form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.form__input {
+  flex: 1;
+  padding: 12px 14px;
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.form__input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(79, 110, 247, 0.15);
+}
+
+.form__button {
+  padding: 12px 20px;
+  font-size: 15px;
+  font-family: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.form__button:hover {
+  background: var(--accent-dark);
+}
+
+/* フィルタ */
+.filters {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.filters__item {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.filters__item:hover {
+  color: var(--text);
+  border-color: var(--muted);
+}
+
+.filters__item.is-active {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* リスト */
+.todo-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.todo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 4px;
+  border-bottom: 1px solid var(--border);
+  animation: fade-in 0.2s ease;
+}
+
+.todo:last-child {
+  border-bottom: none;
+}
+
+.todo__checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.todo__text {
+  flex: 1;
+  word-break: break-word;
+  cursor: pointer;
+}
+
+.todo.is-done .todo__text {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.todo__delete {
+  padding: 4px 8px;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--muted);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s, background 0.15s;
+}
+
+.todo:hover .todo__delete,
+.todo__delete:focus {
+  opacity: 1;
+}
+
+.todo__delete:hover {
+  color: var(--danger);
+  background: rgba(226, 87, 76, 0.1);
+}
+
+/* 空状態・フッター */
+.empty {
+  margin: 24px 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.empty[hidden] {
+  display: none;
+}
+
+.app__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.link-button {
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.link-button:hover {
+  color: var(--danger);
+  text-decoration: underline;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* スマホ幅 */
+@media (max-width: 480px) {
+  body { padding: 20px 12px; }
+  .app { padding: 20px; }
+  .todo__delete { opacity: 1; }
+}
